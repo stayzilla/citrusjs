@@ -9,6 +9,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "request": "^2.67.0"
+    "co": "^4.6.0",
+    "protobufjs": "^5.0.1",
+    "request": "^2.67.0",
+    "request-promise": "^2.0.0"
   }
 }
