@@ -6,10 +6,12 @@ message Merchant {
         PRODUCTION = 1;
     }
 
-    string access_key = 1;
-    string secret_key = 2;
-    string vanity_url = 3;
-       Env env        = 4;
+    Env    env              = 1;
+    string access_key       = 2;
+    string secret_key       = 3;
+    string vanity_url       = 4;
+    string js_signin_id     = 5;
+    string js_signin_secret = 6;
 }
 
 message Address {
@@ -22,20 +24,23 @@ message Address {
 }
 
 message User {
-     string fname   = 1;
-     string lname   = 2;
-     string email   = 3;
-     string mobile  = 4; // 10-digit
-    Address address = 5;
+     string fname    = 1;
+     string lname    = 2;
+     string email    = 3;
+     string mobile   = 4; // 10-digit
+    Address address  = 5;
+     string username = 6;
+     string password = 7;
 }
 
-message Card {
+message Instrument {
     enum Type {
-        CREDIT = 0;
-        DEBIT  = 1;
+        CREDIT_CARD = 0;
+        DEBIT_CARD  = 1;
+        NET_BANKING = 2;
     }
 
-    enum Scheme {
+    enum CardScheme {
         VISA       = 0;
         MASTERCARD = 1;
         MAESTRO    = 2;
@@ -44,22 +49,17 @@ message Card {
         RUPAY      = 5;
     }
 
-      Type type         =  1;
-    Scheme scheme       =  2;
-    string number       =  3;
-    uint32 expiry_month =  4;
-    uint32 expiry_year  =  5;
-    string cvv          =  6;
-    string owner_name   =  7;
-    string citrus_token =  8;
-    string citrus_name  =  9;
-    string citrus_mmid  = 10;
-    string owner_mobile = 11; // 10-digit
-}
-
-message Bank {
-    string name = 1;
-    string code = 2;
+    Type       type              =  1;
+    CardScheme card_scheme       =  2;
+    string     card_number       =  3;
+    uint32     card_expiry_month =  4;
+    uint32     card_expiry_year  =  5;
+    string     card_cvv          =  6;
+    string     card_owner_name   =  7;
+    string     bank_name         =  8;
+    string     bank_code         =  9;
+    string     citrus_token      = 10;
+    string     citrus_name       = 11;
 }
 
 message CustomParam {
@@ -68,17 +68,20 @@ message CustomParam {
 }
 
 message Transaction {
-    string id                          = 1;
-    string currency                    = 2;
-    double amount                      = 3;
-    string signature                   = 4;
-    string return_url                  = 5;
-    string notify_url                  = 6;
+    string   id                        = 1;
+    string   currency                  = 2;
+    double   amount                    = 3;
+    string   signature                 = 4;
+    string   return_url                = 5;
+    string   notify_url                = 6;
     repeated CustomParam custom_params = 7;
 }
 
-message PaymentMethods {
-    repeated Bank banks        = 1;
-    repeated Card credit_cards = 2;
-    repeated Card debit_cards  = 3;
+message AccessToken {
+    string   access_token  = 1;
+    string   token_type    = 2;
+    string   refresh_token = 3;
+    uint64   expires_in    = 4;
+    repeated string scopes = 5;
+    uint64   received_at   = 6;
 }

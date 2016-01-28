@@ -2,7 +2,7 @@
   "name": "citrusjs",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/citrus.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -11,7 +11,10 @@
   "dependencies": {
     "co": "^4.6.0",
     "protobufjs": "^5.0.1",
-    "request": "^2.67.0",
     "request-promise": "^2.0.0"
+  },
+  "devDependencies": {
+    "jscs": "^2.9.0",
+    "jshint": "^2.9.1"
   }
 }
