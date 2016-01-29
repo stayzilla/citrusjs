@@ -10,8 +10,9 @@ var citrus = require("citrusjs");
 - [2. Fetch eligible payment options](#2-fetch-eligible-payment-options-enabled-for-merchant)
 - [3. Process Payments](#3-process-payments)
   - [3.1 Create a Transaction](#31-create-a-transaction)
-  - [3.2 Add payment info](#32-add-payment-info)
-  - [3.3 Get payment URL](#33-get-payment-url)
+  - [3.2 Add User details](#32-add-user-details)
+  - [3.3 Add payment info](#33-add-payment-info)
+  - [3.4 Get payment URL](#34-get-payment-url)
 
 ### 1. Configure merchant details
 
@@ -120,7 +121,7 @@ usr.set("address", new citrus.Address({
 }));
 ```
 
-#### 3.2. Add payment info
+#### 3.3 Add payment info
 
 ```js
 var paymentMode = new citrus.Instrument({
@@ -152,7 +153,7 @@ paymentMode = new citrus.Instrument({
 });
 ```
 
-#### 3.3 Get payment URL
+#### 3.4 Get payment URL
 
 ```js
 sz.getPaymentUrl(usr, paymentMode, txn)
