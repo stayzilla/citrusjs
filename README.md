@@ -169,7 +169,7 @@ sz.getPaymentUrl(usr, paymentMode, txn)
 
 ### 4. Pay using saved cards / banks
 
-#### 4.1 Fetch user's saved cards
+#### 4.1 Fetch user's saved cards / banks
 
 > **ENSURE THAT**
 >  
