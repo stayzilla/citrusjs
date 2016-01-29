@@ -1,12 +1,21 @@
 ## Usage
 
-```
+```js
 var citrus = require("citrusjs");
 ```
 
+## Table of Contents
+
+- [1. Configure merchant details](#1-configure-merchant-details)
+- [2. Fetch eligible payment options](#2-fetch-eligible-payment-options-enabled-for-merchant)
+- [3. Process Payments](#3-process-payments)
+  - [3.1 Create a Transaction](#31-create-a-transaction)
+  - [3.2 Add payment info](#32-add-payment-info)
+  - [3.3 Get payment URL](#33-get-payment-url)
+
 ### 1. Configure merchant details
 
-```
+```js
 // Initialize merchant
 var merchant = new citrus.Merchant({
     "env"             : citrus.Merchant.Env.SANDBOX, // or citrus.Merchant.Env.PRODUCTION
@@ -22,7 +31,7 @@ The `js_signin_id` and `js_signin_secret` is required when fetching user payment
 
 ### 2. Fetch eligible payment options enabled for merchant
 
-```
+```js
 merchant.getEligibleInstruments()
     .then(function (opts) {
         console.log(opts);
@@ -30,10 +39,10 @@ merchant.getEligibleInstruments()
 ```
 
 **OUTPUT:**
-The output is an array of `citrus.Instrument.Type.NET_BANKING` type. (See `/src/types.proto` for details).
+The output is an array of `citrus.Instrument.Type.NET_BANKING` type. (See [/src/types.proto](/src/types.proto) for details).
 Relevant fields are displayed below:
 
-```
+```js
 [
     {
         "type"       : citrus.Instrument.Type.NET_BANKING,
@@ -53,11 +62,11 @@ Relevant fields are displayed below:
 ]
 ```
 
-### 3. Process card payment
+### 3. Process payments
 
 #### 3.1 Create a transaction
 
-```
+```js
 var txn = new citrus.Transaction({
     "id"           : "TRANS_" + Number(new Date()), // some unique txn id
     "amount"       : 10.00,
@@ -73,13 +82,13 @@ var txn = new citrus.Transaction({
 
 To generate a signature for the transaction:
 
-```
+```js
 merchant.generateRequestSignature(txn);
 ```
 
 #### 3.2 Add user details
 
-```
+```js
 var usr = new citrus.User({
     "email"   : "john.doe@gmail.com",
     "fname"   : "John",
@@ -100,7 +109,7 @@ var usr = new citrus.User({
 
 Address can also be set separately:
 
-```
+```js
 usr.set("address", new citrus.Address({
     "street1": "ADDRESS LINE 1",
     "street2": "ADDRESS LINE 2",
@@ -113,7 +122,7 @@ usr.set("address", new citrus.Address({
 
 #### 3.2. Add payment info
 
-```
+```js
 var paymentMode = new citrus.Instrument({
     // ...
 });
@@ -121,7 +130,7 @@ var paymentMode = new citrus.Instrument({
 
 For card payment:
 
-```
+```js
 paymentMode = new citrus.Instrument({
     "type"             : citrus.Instrument.Type.CREDIT_CARD, // or citrus.Instrument.Type.DEBIT_CARD
     "card_scheme"      : citrus.Instrument.CardScheme.VISA,
@@ -135,7 +144,7 @@ paymentMode = new citrus.Instrument({
 
 For netbanking:
 
-```
+```js
 paymentMode = new citrus.Instrument({
     "type"     : citrus.Instrument.Type.NET_BANKING,
     "bank_name": "AXIS Bank",
@@ -145,7 +154,7 @@ paymentMode = new citrus.Instrument({
 
 #### 3.3 Get payment URL
 
-```
+```js
 sz.getPaymentUrl(usr, paymentMode, txn)
     .then(function (url) {
         console.log("pay url: ", url);
