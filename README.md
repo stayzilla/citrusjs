@@ -13,6 +13,9 @@ var citrus = require("citrusjs");
   - [3.2 Add User details](#32-add-user-details)
   - [3.3 Add payment info](#33-add-payment-info)
   - [3.4 Get payment URL](#34-get-payment-url)
+- [4. Pay using saved cards / banks](#4-pay-using-saved-cards-banks)
+  - [4.1 Fetch user's saved cards / banks](#41-fetch-users-saved-cards-banks)
+  - [4.2 Get payment URL](#42-get-payment-url)
 
 ### 1. Configure merchant details
 
@@ -28,7 +31,7 @@ var merchant = new citrus.Merchant({
 });
 ```
 
-The `js_signin_id` and `js_signin_secret` is required when fetching user payment modes (covered later)
+The `js_signin_id` and `js_signin_secret` is required when fetching user payment modes (see section [4.1]())
 
 ### 2. Fetch eligible payment options enabled for merchant
 
@@ -108,6 +111,7 @@ var usr = new citrus.User({
 });`
 ```
 
+Fields `username` and `password` are required only when fetching user's saved cards (see section [4.1]()).    
 Address can also be set separately:
 
 ```js
@@ -154,6 +158,77 @@ paymentMode = new citrus.Instrument({
 ```
 
 #### 3.4 Get payment URL
+
+```js
+sz.getPaymentUrl(usr, paymentMode, txn)
+    .then(function (url) {
+        console.log("pay url: ", url);
+        // redirect user to payment url (client side redirect)
+    });
+```
+
+### 4. Pay using saved cards / banks
+
+#### 4.1 Fetch user's saved cards
+
+> **ENSURE THAT**
+>  
+> - While creating merchant object, you set properties `js_signin_id` and `js_signin_secret`
+> - While creating user object, you set properties `username` and `password`
+
+```
+merchant.getUserInstruments(usr)
+    .then(function (instruments) {
+        console.log(instruments);
+    });
+```
+
+**OUTPUT:**
+The output is an array of `citrus.Instrument.Type.NET_BANKING` type. (See [/src/types.proto](/src/types.proto) for details).
+Relevant fields are displayed below:
+
+```js
+[
+    { 
+        type             : citrus.Instrument.Type.DEBIT_CARD,  // or citrus.Instrument.Type.CREDIT_CARD
+        card_scheme      : citrus,Instrument.CardScheme.VISA,
+        card_number      : 'XXXXXXXXXXXX1234',
+        card_expiry_month: 10,
+        card_expiry_year : 2020,
+        citrus_token     : 'ajlklajsd921kj321l39asldkja921lk3',
+        citrus_name      : 'Debit Card (1234)'
+    },
+    { 
+        type             : citrus.Instrument.Type.NET_BANKING,
+        bank_name        : 'ICICI Corporate Bank',
+        citrus_token     : 'khe7312kjh8ah3k128ayhje81hjkdad8k',
+        citrus_name      : 'ICICI bank'
+    }
+]
+```
+
+#### 4.2 Get payment URL
+
+The method for getting payment URL is the same as described in [section 3.4]((#34-get-payment-url). Just add the CVV number input by user before fetching the url:
+
+```js
+paymentMode = new citrus.Instrument({
+    "type"             : citrus.Instrument.Type.CREDIT_CARD, // or citrus.Instrument.Type.DEBIT_CARD
+    "citrus_token"     : 'ajlklajsd921kj321l39asldkja921lk3',
+    "card_cvv"         : "123"                               // input by user
+});
+```
+
+In case of netbanking:
+
+```js
+paymentMode = new citrus.Instrument({
+    "type"             : citrus.Instrument.Type.NET_BANKING,
+    "citrus_token"     : 'khe7312kjh8ah3k128ayhje81hjkdad8k',
+});
+```
+
+And then fetch URL:
 
 ```js
 sz.getPaymentUrl(usr, paymentMode, txn)
