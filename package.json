@@ -1,12 +1,12 @@
 {
   "name": "citrusjs",
   "version": "1.0.0",
-  "description": "",
+  "description": "Server side citrus js SDK`",
   "main": "src/citrus.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Ramnique Singh",
   "license": "ISC",
   "dependencies": {
     "co": "^4.6.0",
@@ -16,5 +16,16 @@
   "devDependencies": {
     "jscs": "^2.9.0",
     "jshint": "^2.9.1"
-  }
+  },
+  "directories": {
+    "example": "examples"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Stayzilla/citrusjs.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Stayzilla/citrusjs/issues"
+  },
+  "homepage": "https://github.com/Stayzilla/citrusjs#readme"
 }
