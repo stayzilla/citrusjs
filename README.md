@@ -13,8 +13,8 @@ var citrus = require("citrusjs");
   - [3.2 Add User details](#32-add-user-details)
   - [3.3 Add payment info](#33-add-payment-info)
   - [3.4 Get payment URL](#34-get-payment-url)
-- [4. Pay using saved cards / banks](#4-pay-using-saved-cards-banks)
-  - [4.1 Fetch user's saved cards / banks](#41-fetch-users-saved-cards-banks)
+- [4. Pay using saved cards / banks](#4-pay-using-saved-cards--banks)
+  - [4.1 Fetch user's saved cards / banks](#41-fetch-users-saved-cards--banks)
   - [4.2 Get payment URL](#42-get-payment-url)
 
 ### 1. Configure merchant details
@@ -31,7 +31,7 @@ var merchant = new citrus.Merchant({
 });
 ```
 
-The `js_signin_id` and `js_signin_secret` is required when fetching user payment modes (see section [4.1]())
+The `js_signin_id` and `js_signin_secret` is required when fetching user payment modes (see [section 4](#4-pay-using-saved-cards--banks))
 
 ### 2. Fetch eligible payment options enabled for merchant
 
@@ -111,7 +111,7 @@ var usr = new citrus.User({
 });`
 ```
 
-Fields `username` and `password` are required only when fetching user's saved cards (see section [4.1]()).    
+Fields `username` and `password` are required only when fetching user's saved cards (see [section 4](#4-pay-using-saved-cards--banks)).    
 Address can also be set separately:
 
 ```js
