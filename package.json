@@ -1,7 +1,7 @@
 {
   "name": "citrusjs",
   "version": "1.0.0",
-  "description": "Server side citrus js SDK`",
+  "description": "Server side citrus js SDK",
   "main": "src/citrus.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

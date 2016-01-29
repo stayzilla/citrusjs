@@ -1,3 +1,7 @@
+## Requirements
+
+- nodejs >= 4.0
+
 ## Usage
 
 ```js
