@@ -14,7 +14,7 @@ var citrus = require("citrusjs");
   - [3.3 Add payment info](#33-add-payment-info)
   - [3.4 Get payment URL](#34-get-payment-url)
 - [4. Pay using saved cards / banks](#4-pay-using-saved-cards--banks)
-  - [4.1 Fetch user's saved cards / banks](#41-fetch-users-saved-cards--banks)
+  - [4.1 Fetch user"s saved cards / banks](#41-fetch-users-saved-cards--banks)
   - [4.2 Get payment URL](#42-get-payment-url)
 
 ### 1. Configure merchant details
@@ -111,7 +111,7 @@ var usr = new citrus.User({
 });`
 ```
 
-Fields `username` and `password` are required only when fetching user's saved cards (see [section 4](#4-pay-using-saved-cards--banks)).    
+Fields `username` and `password` are required only when fetching user"s saved cards (see [section 4](#4-pay-using-saved-cards--banks)).    
 Address can also be set separately:
 
 ```js
@@ -169,7 +169,7 @@ sz.getPaymentUrl(usr, paymentMode, txn)
 
 ### 4. Pay using saved cards / banks
 
-#### 4.1 Fetch user's saved cards / banks
+#### 4.1 Fetch user"s saved cards / banks
 
 > **ENSURE THAT**
 >  
@@ -190,19 +190,19 @@ Relevant fields are displayed below:
 ```js
 [
     { 
-        type             : citrus.Instrument.Type.DEBIT_CARD,  // or citrus.Instrument.Type.CREDIT_CARD
-        card_scheme      : citrus,Instrument.CardScheme.VISA,
-        card_number      : 'XXXXXXXXXXXX1234',
-        card_expiry_month: 10,
-        card_expiry_year : 2020,
-        citrus_token     : 'ajlklajsd921kj321l39asldkja921lk3',
-        citrus_name      : 'Debit Card (1234)'
+        "type"             : citrus.Instrument.Type.DEBIT_CARD,  // or citrus.Instrument.Type.CREDIT_CARD
+        "card_scheme"      : citrus,Instrument.CardScheme.VISA,
+        "card_number"      : "XXXXXXXXXXXX1234",
+        "card_expiry_month": 10,
+        "card_expiry_year" : 2020,
+        "citrus_token"     : "ajlklajsd921kj321l39asldkja921lk3",
+        "citrus_name"      : "Debit Card (1234)"
     },
     { 
-        type             : citrus.Instrument.Type.NET_BANKING,
-        bank_name        : 'ICICI Corporate Bank',
-        citrus_token     : 'khe7312kjh8ah3k128ayhje81hjkdad8k',
-        citrus_name      : 'ICICI bank'
+        "type"             : citrus.Instrument.Type.NET_BANKING,
+        "bank_name"        : "ICICI Corporate Bank",
+        "citrus_token"     : "khe7312kjh8ah3k128ayhje81hjkdad8k",
+        "citrus_name"      : "ICICI bank"
     }
 ]
 ```
@@ -214,7 +214,7 @@ The method for getting payment URL is the same as described in [section 3.4]((#3
 ```js
 paymentMode = new citrus.Instrument({
     "type"             : citrus.Instrument.Type.CREDIT_CARD, // or citrus.Instrument.Type.DEBIT_CARD
-    "citrus_token"     : 'ajlklajsd921kj321l39asldkja921lk3',
+    "citrus_token"     : "ajlklajsd921kj321l39asldkja921lk3",
     "card_cvv"         : "123"                               // input by user
 });
 ```
@@ -224,7 +224,7 @@ In case of netbanking:
 ```js
 paymentMode = new citrus.Instrument({
     "type"             : citrus.Instrument.Type.NET_BANKING,
-    "citrus_token"     : 'khe7312kjh8ah3k128ayhje81hjkdad8k',
+    "citrus_token"     : "khe7312kjh8ah3k128ayhje81hjkdad8k",
 });
 ```
 
