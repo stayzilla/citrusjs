@@ -1,6 +1,6 @@
 {
   "name": "citrusjs",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Server side citrus js SDK",
   "main": "src/citrus.js",
   "scripts": {
