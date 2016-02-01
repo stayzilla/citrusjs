@@ -133,6 +133,7 @@ Merchant.prototype.getPaymentUrl = function (user, ins, txn) {
                 }
             },
 
+            requestOrigin: 'CJSG',
             paymentToken: {}
         };
 
@@ -167,7 +168,7 @@ Merchant.prototype.getPaymentUrl = function (user, ins, txn) {
             switch (ins.type) {
                 case Instrument.Type.CREDIT_CARD:
                 case Instrument.Type.DEBIT_CARD:
-                    body.paymentToken.paymentMode.scheme = pbf.Reflect.Enum.getName(Instrument.CardScheme, ins.card_scheme).toLowerCase();
+                    body.paymentToken.paymentMode.scheme = pbf.Reflect.Enum.getName(Instrument.CardScheme, ins.card_scheme);
                     body.paymentToken.paymentMode.number = ins.card_number;
                     body.paymentToken.paymentMode.holder = ins.card_owner_name;
                     body.paymentToken.paymentMode.expiry = ins.card_expiry_month + '/' + ins.card_expiry_year;
