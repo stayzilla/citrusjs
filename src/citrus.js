@@ -22,7 +22,7 @@ var co       = require('co'),
         'amex'        : 'AMEX',
         'dinersclub'  : 'DINERS',
         'diners club' : 'DINERS',
-        'rupay'       : 'RUPAY'
+        'rupay'       : 'RPAY'
     };
 
 /**
