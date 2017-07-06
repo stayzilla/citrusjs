@@ -42,11 +42,11 @@ message Instrument {
 
     enum CardScheme {
         VISA       = 0;
-        MASTERCARD = 1;
-        MAESTRO    = 2;
+        MCRD       = 1;
+        MTRO       = 2;
         AMEX       = 3;
         DINERS     = 4;
-        RUPAY      = 5;
+        RPAY       = 5;
     }
 
     Type       type              =  1;
