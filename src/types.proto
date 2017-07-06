@@ -46,7 +46,7 @@ message Instrument {
         MTRO       = 2;
         AMEX       = 3;
         DINERS     = 4;
-        RUPAY      = 5;
+        RPAY       = 5;
     }
 
     Type       type              =  1;
